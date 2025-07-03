@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import useWalletStore from "./zustang/useWalletStore";
 import useAuthStore from "./zustang/useAuthStore";
 import useCryptoStore from "./zustang/useCryptoStore";
-import useNFTStore from "./zustang/useNftStore";
+import useNFTStore from "./zustang/useNFTStore";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";

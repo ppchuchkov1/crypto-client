@@ -94,7 +94,7 @@ const BuyCryptoModal = ({ openBuyCryptoModal, setOpenBuyCryptoModal }) => {
                   className={`w-20 h-20 rounded-full`}
                 />
               </div>
-              <p class="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 text-center">
+              <p className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 text-center">
                 {selectedCrypto?.name}
               </p>
 
