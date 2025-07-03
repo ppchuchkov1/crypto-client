@@ -6,7 +6,7 @@ const NFTSection = () => {
 
   return (
     <>
-      <section className="py-12 ">
+      <section className="py-4 sm:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-lg mx-auto md:max-w-2xl lg:max-w-full">
             <div className="relative w-full h-auto md:col-span-2">
@@ -64,7 +64,7 @@ const NFTSection = () => {
                 </div>
               </div>
             </div>
-            <div className="relative w-full h-auto">
+            <div className="relative w-full h-auto sm:block hidden">
               <div
                 style={{
                   backgroundImage:
@@ -78,7 +78,7 @@ const NFTSection = () => {
                 </h3>
               </div>
             </div>
-            <div className="relative w-full h-auto">
+            <div className="relative w-full h-auto sm:block hidden">
               <div
                 style={{
                   backgroundImage:

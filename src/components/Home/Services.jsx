@@ -1,16 +1,15 @@
 const Services = () => {
   return (
-    <section className="bg-white">
-      <div className="grid max-w-7xl mx-auto px-6 lg:gap-8 xl:gap-0 lg:py-18 lg:grid-cols-12">
+    <section className="bg-white py-10 pb-10 sm:pb-5">
+      <div className="grid max-w-7xl mx-auto px-6 lg:gap-8 xl:gap-0  lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="text-4xl font-bold sm:text-6xl mb-4">
-            Add value to your collection
+            Your gateway to smart Crypto & NFT trading
           </h1>
           <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
-            From checkout to global sales tax compliance, companies around the
-            world use Flowbite to simplify their payment stack. From checkout to
-            global sales tax compliance, companies around the world use Flowbite
-            to simplify their payment stack.
+            Discover a simple and secure way to trade crypto with our modern
+            app. Get real-time prices, track your portfolio, and buy or sell in
+            just a few taps. Perfect for both beginners and experienced traders.
           </p>
           <a
             href="#"
