@@ -1,5 +1,5 @@
 import NFTCard from "./NFTCard";
-import useNFTStore from "../../zustang/useNftStore";
+import useNFTStore from "../../zustang/useNFTStore";
 
 const NFTSection = () => {
   const nfts = useNFTStore((state) => state.nfts);
