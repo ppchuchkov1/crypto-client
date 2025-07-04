@@ -1,8 +1,8 @@
 const Hero = () => {
   return (
     <div className="bg-black">
-      <section className="relative h-[100vh] pt-24 pb-10 sm:pt-38 sm:pb-16 lg:pb-24">
-        <div className="absolute inset-0 pointer-events-none z-0">
+      <section className="relative h-screen pt-24 pb-10 sm:pt-38 sm:pb-16 lg:pb-24">
+        {/* <div className="absolute inset-0 pointer-events-none z-0">
           <div
             className="absolute inset-0 opacity-60"
             style={{
@@ -24,15 +24,30 @@ const Hero = () => {
               backgroundPosition: "center",
             }}
           ></div>
+        </div> */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <video
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source
+              src="https://videos.ctfassets.net/ilblxxee70tt/1muiYk5dsnWO50wS5uCWuZ/2ad4d5b171d33c360b59c4763694a786/EU_Web_Landing_Hero_Mobile_Short.webm"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20">
-          <div className="max-w-xl mx-auto text-center">
-            <h1 className="text-4xl font-bold sm:text-6xl">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-white">
-                The Future of Crypto & NFT Trading
-              </span>
-            </h1>
+          <h1 className="text-4xl text-center font-bold sm:text-7xl">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-white">
+              The Future of <br /> Crypto & NFT Trading
+            </span>
+          </h1>
+          <div className="max-w-2xl mx-auto text-center">
             <p className="mt-5 text-base text-white sm:text-xl">
               Join FTX and access a world of top cryptocurrencies and unique NFT
               collections. Secure trades, low fees, and a seamless experience —
@@ -41,7 +56,7 @@ const Hero = () => {
             <a
               href="#"
               title=""
-              className="inline-flex items-center px-6 py-4 mt-8 font-semibold text-white transition-all duration-200 bg-ftx rounded-lg sm:mt-16"
+              className="inline-flex items-center px-6 py-4 font-semibold text-white transition-all duration-200 bg-ftx rounded-lg sm:mt-16"
               role="button"
             >
               Apply for free

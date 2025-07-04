@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import SBF from "./pages/SBF";
 import Profile from "./pages/Profile";
+import Crypto from "./pages/Crypto";
+import NFT from "./pages/NFT";
 
 const App = () => {
   const token = useAuthStore((state) => state.token);
@@ -36,6 +38,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/crypto" element={<Crypto />} />
+        <Route path="/nft" element={<NFT />} />
         <Route path="/register" element={<Register />} />
         <Route path="/sbf" element={<SBF />} />
         <Route path="/profile" element={<Profile />} />

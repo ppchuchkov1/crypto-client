@@ -29,13 +29,13 @@ const Header = () => {
               Home
             </Link>
             <Link
-              to="/about"
+              to="/crypto"
               className="text-gray-800 font-bold transition-colors duration-200"
             >
               Crypto
             </Link>
             <Link
-              to="/services"
+              to="/nft"
               className="text-gray-800 font-bold transition-colors duration-200"
             >
               NFT

@@ -6,10 +6,10 @@ const TechStack = () => {
           <h2 className="text-center text-lg/8 font-semibold text-gray-900">
             What’s Under the Hood
           </h2>
-          <div className=" mx-auto mt-10 grid grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-8">
+          <div className="mx-auto mt-10 grid grid-cols-4 items-center justify-items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-8">
             <svg
               fill="#61DAFB"
-              className="h-14 grayscale hover:grayscale-0"
+              className="h-12 grayscale hover:grayscale-0"
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ const TechStack = () => {
             </svg>
             <svg
               fill="#5FA04E"
-              className="h-14 grayscale hover:grayscale-0"
+              className="h-12 grayscale hover:grayscale-0"
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ const TechStack = () => {
             </svg>
             <svg
               fill="#808080"
-              className="h-15 grayscale hover:grayscale-0 hover:fill-black"
+              className="h-13 grayscale hover:grayscale-0 hover:fill-black"
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@ const TechStack = () => {
             </svg>
             <svg
               fill="#47A248"
-              className="h-15 grayscale hover:grayscale-0"
+              className="h-12 grayscale hover:grayscale-0"
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ const TechStack = () => {
             </svg>
             <svg
               fill="#FF4438"
-              className="h-13 grayscale hover:grayscale-0"
+              className="h-10 grayscale hover:grayscale-0"
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ const TechStack = () => {
             </svg>
             <svg
               fill="#06B6D4"
-              className="h-15 grayscale hover:grayscale-0"
+              className="h-13 grayscale hover:grayscale-0"
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ const TechStack = () => {
             </svg>
             <svg
               fill="#009639"
-              className="h-13 grayscale hover:grayscale-0"
+              className="h-11 grayscale hover:grayscale-0"
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const TechStack = () => {
             </svg>
             <svg
               fill="#635BFF"
-              className="h-13 grayscale hover:grayscale-0"
+              className="h-10 grayscale hover:grayscale-0"
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"

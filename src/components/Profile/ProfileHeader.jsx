@@ -1,5 +1,8 @@
 import { CreditCard } from "lucide-react";
+import useAuthStore from "../../zustang/useAuthStore";
 const ProfileHeader = () => {
+  const email = useAuthStore((state) => state.email);
+
   return (
     <section className="relative pt-40 pb-5">
       <img
@@ -18,11 +21,10 @@ const ProfileHeader = () => {
         <div className="flex items-center justify-center flex-col sm:flex-row max-sm:gap-5 sm:justify-between mb-5">
           <div className="block">
             <h3 className="font-manrope font-bold text-4xl text-gray-900 mb-1 max-sm:text-center">
-              Emma Smith
+              {email?.slice(0, 3).toUpperCase()}
             </h3>
             <p className="font-normal text-base leading-7 text-gray-500  max-sm:text-center">
-              Engineer at BB Agency Industry <br className="hidden sm:block" />
-              New York, United States
+              {email}
             </p>
           </div>
           <button className="cursor-pointer py-3.5 px-5 flex rounded-lg bg-black items-center shadow-sm shadow-transparent transition-all duration-500 ">
