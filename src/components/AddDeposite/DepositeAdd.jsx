@@ -1,6 +1,8 @@
 import { useState } from "react";
+import useAuthStore from "../../zustang/useAuthStore";
 
 const DepositeAdd = () => {
+  const token = useAuthStore((state) => state.token);
   const [amount, setAmount] = useState(0);
   const handleDeposit = async () => {
     const res = await fetch(
@@ -21,8 +23,14 @@ const DepositeAdd = () => {
 
   return (
     <>
-      <input type="text" onChange={(e) => setAmount(e.target.value)} />
-      <button onClick={handleDeposit}>Deposite</button>
+      <input
+        className="border-2"
+        type="text"
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <button className="cursor-pointer bg-ftx" onClick={handleDeposit}>
+        Deposite
+      </button>
     </>
   );
 };
