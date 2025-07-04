@@ -6,7 +6,7 @@ const DepositeAdd = () => {
   const [amount, setAmount] = useState(0);
   const handleDeposit = async () => {
     const res = await fetch(
-      "https://ppchu.com/wallet/create-deposit-checkout-session",
+      "https://ppchu.com/api/wallet/create-deposit-checkout-session",
       {
         method: "POST",
         headers: {
