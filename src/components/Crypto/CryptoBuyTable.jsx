@@ -1,15 +1,34 @@
 import { useState } from "react";
 import useCryptoStore from "../../zustang/useCryptoStore";
+import useAuthStore from "../../zustang/useAuthStore";
+import useNotificationStore from "../../zustang/useNotificationStore";
 import BuyCryptoModal from "../CryptoModals/BuyCryptoModal";
 
-const CryptoBuyTable = () => {
+const CryptoBuyTable = ({ searchTerm }) => {
   const crypto = useCryptoStore((state) => state.crypto);
+  const token = useAuthStore((state) => state.token);
   const setSelectedCrypto = useCryptoStore((state) => state.setSelectedCrypto);
+  const showNotification = useNotificationStore(
+    (state) => state.showNotification
+  );
   const [openBuyCryptoModal, setOpenBuyCryptoModal] = useState(false);
 
+  const filteredCrypto = crypto.filter(
+    (c) =>
+      c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      c.symbol.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const getCryptoAndOpenModal = (crypto) => {
-    setSelectedCrypto(crypto);
-    setOpenBuyCryptoModal(true);
+    if (token.length === 0) {
+      showNotification(
+        "error",
+        "You are not logged in. Please login to continue."
+      );
+    } else {
+      setSelectedCrypto(crypto);
+      setOpenBuyCryptoModal(true);
+    }
   };
 
   return (
@@ -21,7 +40,6 @@ const CryptoBuyTable = () => {
       <div className="max-w-7xl mx-auto px-6 pb-12 ">
         <div className="overflow-x-auto w-full">
           <div className="bg-white border border-t-0 border-gray-200 overflow-hidden min-w-[800px]">
-            {/* Header */}
             <div className="grid grid-cols-6 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-200">
               <div className="font-semibold text-gray-900">Digital Asset</div>
               <div className="font-semibold text-gray-900">Price</div>
@@ -31,9 +49,8 @@ const CryptoBuyTable = () => {
               <div className="font-semibold text-gray-900">Action</div>
             </div>
 
-            {/* Rows */}
             <div className="divide-y divide-gray-200">
-              {crypto?.slice(0, 10)?.map((crypto) => (
+              {filteredCrypto?.map((crypto) => (
                 <div
                   key={crypto.id}
                   className="grid grid-cols-6 gap-4 px-6 py-4 hover:bg-gray-50 transition-colors"

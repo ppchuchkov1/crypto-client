@@ -1,3 +1,4 @@
 {
-  "DEV": "https://ppchu.com/api"
+  "PROD": "https://ppchu.com/api",
+  "DEV": "http://localhost/api"
 }

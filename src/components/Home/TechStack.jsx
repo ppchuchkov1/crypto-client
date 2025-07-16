@@ -1,3 +1,5 @@
+import ethTechStack from "../../assets/eth-tech-stack.png";
+
 const TechStack = () => {
   return (
     <>
@@ -90,11 +92,7 @@ const TechStack = () => {
           </div>
         </div>
       </div>
-      <img
-        className="h-auto max-w-full"
-        src="https://ethereum.org/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fhero.94a1ecc4.png&w=1920&q=75"
-        alt="image description"
-      />
+      <img className="h-auto max-w-full" src={ethTechStack} alt="ETH" />
     </>
   );
 };

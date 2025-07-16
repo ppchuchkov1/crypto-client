@@ -1,5 +1,3 @@
-import React from "react";
-
 const SBFTimeline = () => {
   const timelineEvents = [
     {
@@ -27,8 +25,9 @@ const SBFTimeline = () => {
         "After a high-profile trial, Sam Bankman-Fried is found guilty on multiple fraud and conspiracy charges. He is sentenced to 25 years in federal prison, marking one of the biggest fraud convictions in crypto history.",
     },
   ];
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {timelineEvents.map((event, index) => (
           <div key={index} className="relative">

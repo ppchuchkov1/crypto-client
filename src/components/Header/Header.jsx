@@ -1,27 +1,34 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Wallet, Eye, EyeOff } from "lucide-react";
-import logo from "../assets/logo.png";
-import useAuthStore from "../zustang/useAuthStore";
-import useWalletStore from "../zustang/useWalletStore";
-import ProfileAvatar from "./Profile/ProfileAvatarMenu";
+import { Wallet, Eye, EyeOff, BanknoteArrowUp, Menu, X } from "lucide-react";
+import logo from "../../assets/logo.png";
+import useAuthStore from "../../zustang/useAuthStore";
+import useWalletStore from "../../zustang/useWalletStore";
+import MobileNavigation from "./MobileNavigation";
+import ProfileAvatar from "../Profile/ProfileAvatarMenu";
 
 const Header = () => {
   const token = useAuthStore((state) => state.token);
   const wallet = useWalletStore((state) => state.wallet);
   const showBalance = useWalletStore((state) => state.showBalance);
   const setShowBalance = useWalletStore((state) => state.setShowBalance);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <header className="sticky top-0 z-50">
       <nav className="bg-white px-4 lg:px-6 py-3">
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img src={logo} className="mr-3 h-7" alt="FTX" />
-          </Link>
+        <div className="flex justify-between items-center mx-auto max-w-screen-xl">
+          <div className="flex items-center w-1/4">
+            <Link to="/" className="flex items-center">
+              <img src={logo} className="mr-3 h-7" alt="FTX" />
+            </Link>
+          </div>
 
-          {/* Navigation Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center justify-center space-x-8 w-1/2">
             <Link
               to="/"
               className="text-gray-800 font-bold transition-colors duration-200"
@@ -44,7 +51,7 @@ const Header = () => {
               to="/profile"
               className="text-gray-800 font-bold transition-colors duration-200"
             >
-              My collections
+              Wallet
             </Link>
             <Link
               to="/sbf"
@@ -54,23 +61,25 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Auth Buttons */}
-          <div className="flex items-center gap-5">
+          <div className="hidden md:flex items-center justify-end gap-5 w-1/4">
             {token?.length > 0 && (
               <div className="flex gap-2">
-                {/* Wallet */}
-                <div className="flex items-center gap-2 text-black">
-                  <Wallet className="w-5 h-5 text-ftx" />
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">
-                      {showBalance
-                        ? `$${wallet?.wallet?.usdBalance?.toFixed(2)}`
-                        : "••••••"}
-                    </span>
+                <Link to="/profile">
+                  <div className="flex items-center text-black">
+                    <Wallet className="w-5 h-5 text-ftx" />
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium w-16 text-right">
+                        {showBalance
+                          ? `$${
+                              wallet?.wallet?.usdBalance === undefined
+                                ? "•••••••••"
+                                : wallet?.wallet?.usdBalance?.toFixed(2)
+                            }`
+                          : "•••••••••"}
+                      </span>
+                    </div>
                   </div>
-                </div>
-
-                {/* Toggle visibility */}
+                </Link>
                 <button
                   onClick={() => setShowBalance(!showBalance)}
                   className="p-1 hover:bg-gray-700 rounded-full transition-colors text-gray-400 hover:text-white"
@@ -81,10 +90,18 @@ const Header = () => {
                     <EyeOff className="w-4 h-4" />
                   )}
                 </button>
+                <Link to="/deposite">
+                  <div className="flex items-center gap-2 text-black">
+                    <BanknoteArrowUp className="w-5 h-5 text-green-500" />
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium">Deposite</span>
+                    </div>
+                  </div>
+                </Link>
               </div>
             )}
 
-            {token?.length === 0 ? (
+            {!token || token?.length === 0 ? (
               <>
                 <Link
                   to="/login"
@@ -103,7 +120,23 @@ const Header = () => {
               <ProfileAvatar />
             )}
           </div>
+
+          {/* Mobile Hamburger Button */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="p-2 text-gray-600 hover:text-gray-800 focus:outline-none"
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
+
+        {isMenuOpen && <MobileNavigation setIsMenuOpen={setIsMenuOpen} />}
       </nav>
     </header>
   );

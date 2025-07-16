@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { apiURl } from "../configuration/apiconfig";
+import useWalletStore from "./useWalletStore";
+import useNotificationStore from "./useNotificationStore";
 
 const useAuthStore = create(
   persist(
@@ -8,6 +10,10 @@ const useAuthStore = create(
       token: "",
       userId: "",
       email: "",
+      isExpireToken: false,
+      unathorized: false,
+
+      setIsExpireToken: (value) => set({ isExpireToken: value }),
 
       login: async (email, password) => {
         try {
@@ -19,7 +25,11 @@ const useAuthStore = create(
             body: JSON.stringify({ email, password }),
           });
 
-          if (!res.ok) throw new Error("Login failed");
+          if (!res.ok) {
+            useNotificationStore
+              .getState()
+              .showNotification("error", "Wrong email or password");
+          }
 
           const data = await res.json();
 
@@ -28,6 +38,10 @@ const useAuthStore = create(
             userId: data.userId,
             email: data.email,
           });
+
+          useWalletStore.getState().getUserWallet(data.token);
+
+          set({ isExpireToken: false });
         } catch (error) {
           console.error("Login error:", error);
         }
@@ -52,6 +66,8 @@ const useAuthStore = create(
             userId: data.userId,
             email: data.email,
           });
+          useWalletStore.getState().getUserWallet(data.token);
+          set({ isExpireToken: false });
         } catch (error) {
           console.error("Registration error:", error);
           throw error;
@@ -64,6 +80,7 @@ const useAuthStore = create(
           userId: "",
           email: "",
         });
+        set({ isExpireToken: false });
       },
     }),
     {

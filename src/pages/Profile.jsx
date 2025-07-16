@@ -1,14 +1,16 @@
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import ProfileHeader from "../components/Profile/ProfileHeader";
-import CryptoCards from "../components/Profile/ProfileCryptoCards";
-import Footer from "../components/Footer";
+import ProfileCryptoCards from "../components/Profile/ProfileCryptoCards";
+import ProfileNFT from "../components/Profile/ProfileNFT";
+import Footer from "../components/Footer/Footer";
 
 const Profile = () => {
   return (
     <>
       <Header />
       <ProfileHeader />
-      <CryptoCards />
+      <ProfileCryptoCards />
+      <ProfileNFT />
       <Footer />
     </>
   );

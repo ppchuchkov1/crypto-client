@@ -1,12 +1,12 @@
-import React from "react";
+import sbfDownfall from "../../assets/sbf-downfall.jpg";
 
 const SBFDownfall = () => {
   return (
     <>
       <img
         className="h-auto max-w-full ml-auto mr-auto"
-        src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25357874/STK453_FTX_TRIAL_A.jpg?quality=90&strip=all&crop=0,9.9676601489831,100,80.064679702034"
-        alt="image description"
+        src={sbfDownfall}
+        alt="SBF"
       />
       <section className="bg-white ">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">

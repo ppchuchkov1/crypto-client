@@ -1,31 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import NFTHero from "../components/NFT/NFTHero";
 import NFTMarket from "../components/NFT/NFTMarket";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import NFTSearch from "../components/NFT/NFTSearch";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/Footer";
 
 const NFT = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <>
-      <div className="absolute inset-0 pointer-events-none z-[-50] bg-black">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "url(https://madebydesignesia.com/themes/gigaland/images/background/7.jpg)",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-          }}
-        ></div>
-      </div>
-
       <Header />
       <NFTHero />
       <div className="bg-gray-50">
-        <NFTSearch />
-        <NFTMarket />
+        <NFTSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <NFTMarket searchTerm={searchTerm} />
       </div>
       <Footer />
     </>

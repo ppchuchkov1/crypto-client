@@ -9,14 +9,15 @@ import {
   Shield,
   ChevronDown,
 } from "lucide-react";
+import profileAvatar from "../../assets/profile-avatar.jpg";
 import useAuthStore from "../../zustang/useAuthStore";
 
 const ProfileAvatar = () => {
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dropdownRef = useRef(null);
   const logout = useAuthStore((state) => state.logout);
   const email = useAuthStore((state) => state.email);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   //Close menu when click outside
   useEffect(() => {
@@ -66,15 +67,14 @@ const ProfileAvatar = () => {
 
   return (
     <div className="relative inline-block" ref={dropdownRef}>
-      {/* Avatar Button */}
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#00a8c4] focus:ring-offset-2 rounded-full"
       >
         <img
-          className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300  hover:ring-[#00a8c4] transition-all duration-200"
-          src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24289349/STK_226445_Sam_Bankman_Fried_FTX_2.jpg?quality=90&strip=all&crop=16.666666666667,0,66.666666666667,100"
-          alt="Profile avatar"
+          className="w-10 h-10 rounded-full p-1 object-cover"
+          src={profileAvatar}
+          alt="Profile"
         />
         <ChevronDown
           className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
@@ -84,19 +84,13 @@ const ProfileAvatar = () => {
       </button>
 
       {isMenuOpen && (
-        <div
-          className="absolute bg-white top-full mt-2 w-56 rounded-lg shadow-lg  z-50"
-          style={{
-            right: "0px",
-            transform: "translateX(-80)",
-          }}
-        >
+        <div className="absolute bg-white top-full mt-2 w-56 rounded-lg shadow-lg z-50 left-0 md:left-auto md:right-0">
           <div className="py-1">
             <div className="px-4 py-3 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <img
-                  className="w-8 h-8 rounded-full"
-                  src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24289349/STK_226445_Sam_Bankman_Fried_FTX_2.jpg?quality=90&strip=all&crop=16.666666666667,0,66.666666666667,100"
+                  className="w-10 h-10 rounded-full object-cover"
+                  src={profileAvatar}
                   alt="Profile"
                 />
                 <div>
@@ -113,7 +107,6 @@ const ProfileAvatar = () => {
                 return <hr key={index} className="my-1 border-gray-200 " />;
               }
 
-              const IconComponent = item.icon;
               return (
                 <button
                   key={index}
@@ -127,7 +120,7 @@ const ProfileAvatar = () => {
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
-                  <IconComponent className="w-4 h-4" />
+                  <item.icon className="w-4 h-4" />
                   {item.label}
                 </button>
               );

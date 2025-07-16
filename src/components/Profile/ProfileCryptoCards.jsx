@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BanknoteArrowDown } from "lucide-react";
 import useWalletStore from "../../zustang/useWalletStore";
 import useCryptoStore from "../../zustang/useCryptoStore";
@@ -10,6 +10,13 @@ const ProfileCryptoCards = () => {
   const [selectedCryptoToSell, setSelectedCryptoToSell] = useState({});
   const [openSellCryptoModal, setOpenSellCryptoModal] = useState(false);
 
+  const getCrptoBySymbol = (symbol) =>
+    crypto.find((item) => item.symbol === symbol);
+
+  const formatAmount = (amount) => {
+    return amount < 1 ? amount.toFixed(4) : amount.toLocaleString();
+  };
+
   const formatTotal = (amount, price) => {
     const total = amount * price;
     return `$${total.toLocaleString(undefined, {
@@ -18,13 +25,6 @@ const ProfileCryptoCards = () => {
     })}`;
   };
 
-  const formatAmount = (amount) => {
-    return amount < 1 ? amount.toFixed(4) : amount.toLocaleString();
-  };
-
-  const getCrptoBySymbol = (symbol) =>
-    crypto.find((item) => item.symbol === symbol);
-
   return (
     <>
       <SellCryptoModal
@@ -32,9 +32,9 @@ const ProfileCryptoCards = () => {
         openSellCryptoModal={openSellCryptoModal}
         setOpenSellCryptoModal={setOpenSellCryptoModal}
       />
-      <div className="min-h-screen bg-white p-6">
-        <div className="max-width-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <section className="py-6 relative">
+        <div className="w-full max-w-2xl lg:max-w-7xl px-6 lg:px-8 mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {wallet?.wallet?.currencies?.map((crypto, index) => (
               <div
                 key={index}
@@ -120,7 +120,7 @@ const ProfileCryptoCards = () => {
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

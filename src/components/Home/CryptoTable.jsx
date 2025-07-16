@@ -1,15 +1,28 @@
 import { useState } from "react";
 import useCryptoStore from "../../zustang/useCryptoStore";
+import useAuthStore from "../../zustang/useAuthStore";
+import useNotificationStore from "../../zustang/useNotificationStore";
 import BuyCryptoModal from "../CryptoModals/BuyCryptoModal";
 
 const CryptoTable = () => {
   const crypto = useCryptoStore((state) => state.crypto);
+  const token = useAuthStore((state) => state.token);
   const setSelectedCrypto = useCryptoStore((state) => state.setSelectedCrypto);
+  const showNotification = useNotificationStore(
+    (state) => state.showNotification
+  );
   const [openBuyCryptoModal, setOpenBuyCryptoModal] = useState(false);
 
   const getCryptoAndOpenModal = (crypto) => {
-    setSelectedCrypto(crypto);
-    setOpenBuyCryptoModal(true);
+    if (token.length === 0) {
+      showNotification(
+        "error",
+        "You are not logged in. Please login to continue."
+      );
+    } else {
+      setSelectedCrypto(crypto);
+      setOpenBuyCryptoModal(true);
+    }
   };
 
   return (
@@ -22,7 +35,6 @@ const CryptoTable = () => {
       <div className="max-w-7xl mx-auto px-6 pb-12 pt-3 bg-white">
         <div className="overflow-x-auto w-full">
           <div className="bg-white rounded-lg border border-gray-200 overflow-hidden min-w-[800px]">
-            {/* Header */}
             <div className="grid grid-cols-6 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-200">
               <div className="font-semibold text-gray-900">Digital Asset</div>
               <div className="font-semibold text-gray-900">Price</div>
@@ -32,7 +44,6 @@ const CryptoTable = () => {
               <div className="font-semibold text-gray-900">Action</div>
             </div>
 
-            {/* Rows */}
             <div className="divide-y divide-gray-200">
               {crypto?.slice(0, 10)?.map((crypto) => (
                 <div

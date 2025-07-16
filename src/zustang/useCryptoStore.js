@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { apiURl } from "../configuration/apiconfig";
 import useWalletStore from "./useWalletStore";
+import useNotificationStore from "./useNotificationStore";
 
 const useCryptoStore = create((set) => ({
   crypto: [],
@@ -36,11 +37,20 @@ const useCryptoStore = create((set) => ({
         body: JSON.stringify(cryptoObject),
       });
 
+      if (res.status === 400) {
+        useNotificationStore
+          .getState()
+          .showNotification(
+            "error",
+            "Not enough funds in your wallet. Please add more to continue"
+          );
+      }
+
       if (!res.ok) throw new Error("Failed to buy crypto");
 
-      const data = await res.json();
-      console.log("Buy response:", data);
-
+      useNotificationStore
+        .getState()
+        .showNotification("success", "Purchase successful");
       await getUserWallet(token);
     } catch (error) {
       console.error("Buy Crypto error:", error);
@@ -67,7 +77,9 @@ const useCryptoStore = create((set) => ({
 
       const data = await res.json();
       console.log("Buy response:", data);
-
+      useNotificationStore
+        .getState()
+        .showNotification("success", "Sale successful");
       await getUserWallet(token);
     } catch (error) {
       console.error("Buy Crypto error:", error);

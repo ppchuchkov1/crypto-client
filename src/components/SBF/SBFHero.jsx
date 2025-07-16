@@ -1,4 +1,4 @@
-import React from "react";
+import sbfHero from "../../assets/sbf-hero.jpeg";
 
 const SBFHero = () => {
   return (
@@ -15,10 +15,7 @@ const SBFHero = () => {
           </p>
         </div>
         <div className="relative">
-          <img
-            src="https://compote.slate.com/images/8f777f82-252f-4f1f-b2b1-d2474fe6d563.jpeg?crop=1560%2C1040%2Cx0%2Cy0"
-            alt=""
-          />
+          <img src={sbfHero} alt="SBF" />
         </div>
       </div>
     </div>

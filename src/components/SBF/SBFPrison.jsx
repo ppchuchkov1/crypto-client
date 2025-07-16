@@ -1,9 +1,8 @@
-import React from "react";
 import { TvMinimalPlay } from "lucide-react";
+
 const SBFPrison = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      {" "}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="px-4 sm:px-0">
         <h3 className="text-base/7 font-semibold text-gray-900">
           End of the Trial

@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { ArrowDownUp, X } from "lucide-react";
 import useCryptoStore from "../../zustang/useCryptoStore";
 import useAuthStore from "../../zustang/useAuthStore";
+import depositeBackground from "../../assets/deposite-bg.png";
+import Modal from "../../UI/Modal";
 
 const BuyCryptoModal = ({ openBuyCryptoModal, setOpenBuyCryptoModal }) => {
   const selectedCrypto = useCryptoStore((state) => state.selectedCrypto);
@@ -27,59 +30,31 @@ const BuyCryptoModal = ({ openBuyCryptoModal, setOpenBuyCryptoModal }) => {
   if (!openBuyCryptoModal) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-opacity-50 backdrop-blur-sm"
-      onClick={closeBuyCryptoModal}
+    <Modal
+      className="w-200"
+      isOpen={openBuyCryptoModal}
+      onClose={closeBuyCryptoModal}
     >
-      <div
-        className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="bg-white bg-cover rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         <div
           style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1750490970730-493c7ea3fdf2?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-            backgroundSize: "cover",
+            backgroundImage: `url(${depositeBackground})`,
           }}
-          className="p-6 text-white relative overflow-hidden"
+          className="p-5 text-white relative overflow-hidden"
         >
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-                  />
-                </svg>
-                <h2 className="text-2xl font-bold">
+                <ArrowDownUp className="h-6 w-6" />
+                <h2 className="text-xl font-bold">
                   Buy {selectedCrypto?.name}
                 </h2>
               </div>
               <button
                 onClick={closeBuyCryptoModal}
-                className="p-2 rounded-full hover:bg-white hover:bg-opacity-20 transition-all duration-200"
+                className="p-2 rounded-full cursor-pointer"
               >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <X />
               </button>
             </div>
           </div>
@@ -167,7 +142,7 @@ const BuyCryptoModal = ({ openBuyCryptoModal, setOpenBuyCryptoModal }) => {
           </p>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 };
 
