@@ -17,7 +17,7 @@ const RegisterForm = () => {
 
     try {
       await register(email, password);
-      if (useAuthStore.getState().token.length > 0) {
+      if (token?.length > 0) {
         navigate("/");
       } else {
         setError("Login error. Check your email and password");
