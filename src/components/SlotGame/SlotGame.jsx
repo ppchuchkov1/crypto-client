@@ -14,7 +14,7 @@ const symbols = [
   { img: carolineImg, color: "", multiplier: 3 },
 ];
 
-const bets = [100, 500, 1000, 5000, 10000];
+const bets = [100, 500, 1000, 5000];
 const FREE_SPINS_COUNT = 7;
 
 export default function SlotGame() {
@@ -191,7 +191,7 @@ export default function SlotGame() {
       }}
       className="bg-cover bg-center bg-no-repeat w-screen min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-700 to-purple-900 overflow-hidden"
     >
-      <div className="sm:rotate-0 rotate-90">
+      <div>
         {/* Индикатор за безплатни врътки над играта */}
         {freeSpins > 0 && (
           <div className="w-full flex justify-center mb-2 animate-fade-in">
@@ -225,7 +225,7 @@ export default function SlotGame() {
           </div>
         )}
         {/* Слот машина и съобщения */}
-        <div className="flex flex-row items-center justify-center bg-black/50 backdrop-blur-md rounded-lg shadow-2xl p-2 sm:p-8 relative w-full max-w-[900px] h-[160px] sm:h-[320px] overflow-hidden">
+        <div className="flex flex-row items-center justify-center bg-black/50 backdrop-blur-md rounded-lg shadow-2xl p-2 sm:p-8 relative w-full max-w-[900px] h-[180px] sm:h-[320px] overflow-hidden">
           {/* Анимация с падащи пари */}
           {showWinAnimation && (
             <div className="absolute left-0 top-0 w-full h-full pointer-events-none z-30">
@@ -269,7 +269,7 @@ export default function SlotGame() {
           {reels.map((r, i) => (
             <div
               key={i}
-              className={`flex flex-col items-center justify-center mx-1 sm:mx-4 w-full sm:w-60 h-full sm:h-64 bg-white rounded-lg shadow-inner transition-all duration-500`}
+              className={`flex flex-col items-center justify-center mx-1 sm:mx-4 w-27 sm:w-60 h-full sm:h-64 bg-white rounded-lg shadow-inner transition-all duration-500`}
             >
               <motion.img
                 src={symbols[r].img}
@@ -332,29 +332,36 @@ export default function SlotGame() {
             </div>
           )}
         </div>
-        {/* Контролен панел в стил EGT */}
-        <div className="w-full max-w-[900px] flex flex-row items-end justify-between bg-black/50 backdrop-blur-md rounded-lg px-2 sm:px-8 py-4 mt-2 gap-2 sm:gap-4 shadow-2xl ">
-          {/* Balance */}
-          <div className="flex flex-col items-center min-w-[120px]">
-            <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-wider leading-none">
-              {balance.toLocaleString()}
-            </span>
-            <span className="text-xs sm:text-sm text-yellow-400 font-bold uppercase mt-1 tracking-widest">
-              BALANCE
-            </span>
+        {/* Контролен панел: мобилен - balance и win на ред, бутоните отдолу; desktop - всичко на един ред */}
+        <div className="w-full max-w-[900px] bg-black/50 backdrop-blur-md rounded-lg px-2 sm:px-8 py-4 mt-2 shadow-2xl ">
+          {/* Mobile: balance и win на един ред, бутоните отдолу */}
+          <div className="flex flex-row w-full justify-between items-center mb-2 sm:hidden">
+            <div className="flex flex-col items-center min-w-[120px]">
+              <span className="text-xl font-extrabold text-white tracking-wider leading-none">
+                {balance.toLocaleString()}
+              </span>
+              <span className="text-xs text-yellow-400 font-bold uppercase mt-1 tracking-widest">
+                BALANCE
+              </span>
+            </div>
+            <div className="flex flex-col items-center min-w-[120px]">
+              <span className="text-xl font-extrabold text-white tracking-wider leading-none">
+                {lastWin > 0 ? `${lastWin.toLocaleString()}` : "0.00"}
+              </span>
+              <span className="text-xs text-yellow-400 font-bold uppercase mt-1 tracking-widest">
+                WIN
+              </span>
+            </div>
           </div>
-          {/* Bet options */}
-          <div className="flex flex-row items-end gap-2 sm:gap-3 flex-1 justify-center">
+          <div className="mt-4 flex flex-row flex-wrap items-end gap-2 w-full justify-center sm:hidden">
             {bets.map((b) => (
               <div key={b} className="flex flex-col items-center">
                 <button
                   onClick={() => handleBetAndSpin(b)}
                   disabled={
-                    freeSpins > 0
-                      ? b !== freeSpinsBet // само избраният е активен
-                      : spinning || balance < b // иначе стандартна логика
+                    freeSpins > 0 ? b !== freeSpinsBet : spinning || balance < b
                   }
-                  className={`flex flex-col items-center px-3 sm:px-4 py-1 sm:py-2 rounded-lg  border-2 font-bold shadow-md transition-all duration-150
+                  className={`flex flex-col items-center px-3 py-1 rounded-lg  border-2 font-bold shadow-md transition-all duration-150
                   ${
                     bet === b
                       ? "bg-green-500 border-green-600 text-white scale-105"
@@ -364,18 +371,17 @@ export default function SlotGame() {
                 `}
                   style={{ width: 90 }}
                 >
-                  <span className="text-base sm:text-lg font-extrabold tracking-wider">
+                  <span className="text-base font-extrabold tracking-wider">
                     {b}
                   </span>
-                  <span className="text-[10px] sm:text-xs text-yellow-300 font-bold leading-none -mt-1">
+                  <span className="text-[10px] text-yellow-300 font-bold leading-none -mt-1">
                     BET
                   </span>
                 </button>
-                {/* Нов бутон за купуване на бонус */}
                 <button
                   onClick={() => handleBuyBonus(b)}
                   disabled={spinning || balance < b * 30 || freeSpins > 0}
-                  className={`mt-2 px-2 py-1 rounded bg-yellow-500 text-white font-bold text-xs sm:text-sm shadow border-2 border-yellow-600 hover:bg-yellow-500 transition disabled:opacity-60`}
+                  className={`mt-2 px-2 py-1 rounded bg-yellow-500 text-white font-bold text-xs shadow border-2 border-yellow-600 hover:bg-yellow-500 transition disabled:opacity-60`}
                   style={{ width: 90 }}
                 >
                   Buy bonus {b * 30}
@@ -383,14 +389,62 @@ export default function SlotGame() {
               </div>
             ))}
           </div>
-          {/* Win */}
-          <div className="flex flex-col items-center min-w-[120px]">
-            <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-wider leading-none">
-              {lastWin > 0 ? `+${lastWin.toLocaleString()}` : "0.00"}
-            </span>
-            <span className="text-xs sm:text-sm text-yellow-400 font-bold uppercase mt-1 tracking-widest">
-              WIN
-            </span>
+          {/* Desktop: всичко на един ред */}
+          <div className="hidden sm:flex flex-row w-full items-end justify-between gap-4">
+            <div className="flex flex-col items-center min-w-[120px]">
+              <span className="text-3xl font-extrabold text-white tracking-wider leading-none">
+                {balance.toLocaleString()}
+              </span>
+              <span className="text-sm text-yellow-400 font-bold uppercase mt-1 tracking-widest">
+                BALANCE
+              </span>
+            </div>
+            <div className="flex flex-row flex-wrap items-end gap-3 flex-1 justify-center">
+              {bets.map((b) => (
+                <div key={b} className="flex flex-col items-center">
+                  <button
+                    onClick={() => handleBetAndSpin(b)}
+                    disabled={
+                      freeSpins > 0
+                        ? b !== freeSpinsBet
+                        : spinning || balance < b
+                    }
+                    className={`flex flex-col items-center px-4 py-2 rounded-lg  border-2 font-bold shadow-md transition-all duration-150
+                    ${
+                      bet === b
+                        ? "bg-green-500 border-green-600 text-white scale-105"
+                        : "bg-[#23272e] border-[#444] text-gray-100 hover:bg-gray-700 hover:border-green-500"
+                    }
+                    disabled:opacity-60
+                  `}
+                    style={{ width: 90 }}
+                  >
+                    <span className="text-lg font-extrabold tracking-wider">
+                      {b}
+                    </span>
+                    <span className="text-xs text-yellow-300 font-bold leading-none -mt-1">
+                      BET
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => handleBuyBonus(b)}
+                    disabled={spinning || balance < b * 30 || freeSpins > 0}
+                    className={`mt-2 px-2 py-1 rounded bg-yellow-500 text-white font-bold text-sm shadow border-2 border-yellow-600 hover:bg-yellow-500 transition disabled:opacity-60`}
+                    style={{ width: 90 }}
+                  >
+                    Buy bonus {b * 30}
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col items-center min-w-[120px]">
+              <span className="text-3xl font-extrabold text-white tracking-wider leading-none">
+                {lastWin > 0 ? `${lastWin.toLocaleString()}` : "0.00"}
+              </span>
+              <span className="text-sm text-yellow-400 font-bold uppercase mt-1 tracking-widest">
+                WIN
+              </span>
+            </div>
           </div>
         </div>
       </div>
