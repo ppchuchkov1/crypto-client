@@ -353,41 +353,48 @@ export default function SlotGame() {
               </span>
             </div>
           </div>
-          <div className="mt-4 flex flex-row flex-wrap items-end gap-2 w-full justify-center sm:hidden">
-            {bets.map((b) => (
-              <div key={b} className="flex flex-col items-center">
-                <button
-                  onClick={() => handleBetAndSpin(b)}
-                  disabled={
-                    freeSpins > 0 ? b !== freeSpinsBet : spinning || balance < b
-                  }
-                  className={`flex flex-col items-center px-3 py-1 rounded-lg  border-2 font-bold shadow-md transition-all duration-150
-                  ${
-                    bet === b
-                      ? "bg-green-500 border-green-600 text-white scale-105"
-                      : "bg-[#23272e] border-[#444] text-gray-100 hover:bg-gray-700 hover:border-green-500"
-                  }
-                  disabled:opacity-60
-                `}
-                  style={{ width: 90 }}
+          <div className="mt-4 w-full overflow-x-auto sm:hidden">
+            <div className="flex flex-row items-end gap-2 min-w-max px-1">
+              {bets.map((b) => (
+                <div
+                  key={b}
+                  className="flex flex-col items-center flex-shrink-0"
                 >
-                  <span className="text-base font-extrabold tracking-wider">
-                    {b}
-                  </span>
-                  <span className="text-[10px] text-yellow-300 font-bold leading-none -mt-1">
-                    BET
-                  </span>
-                </button>
-                <button
-                  onClick={() => handleBuyBonus(b)}
-                  disabled={spinning || balance < b * 30 || freeSpins > 0}
-                  className={`mt-2 px-2 py-1 rounded bg-yellow-500 text-white font-bold text-xs shadow border-2 border-yellow-600 hover:bg-yellow-500 transition disabled:opacity-60`}
-                  style={{ width: 90 }}
-                >
-                  Buy bonus {b * 30}
-                </button>
-              </div>
-            ))}
+                  <button
+                    onClick={() => handleBetAndSpin(b)}
+                    disabled={
+                      freeSpins > 0
+                        ? b !== freeSpinsBet
+                        : spinning || balance < b
+                    }
+                    className={`flex flex-col items-center px-3 py-1 rounded-lg  border-2 font-bold shadow-md transition-all duration-150
+                    ${
+                      bet === b
+                        ? "bg-green-500 border-green-600 text-white scale-105"
+                        : "bg-[#23272e] border-[#444] text-gray-100 hover:bg-gray-700 hover:border-green-500"
+                    }
+                    disabled:opacity-60
+                  `}
+                    style={{ width: 90 }}
+                  >
+                    <span className="text-base font-extrabold tracking-wider">
+                      {b}
+                    </span>
+                    <span className="text-[10px] text-yellow-300 font-bold leading-none -mt-1">
+                      BET
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => handleBuyBonus(b)}
+                    disabled={spinning || balance < b * 30 || freeSpins > 0}
+                    className={`mt-2 px-2 py-1 rounded bg-yellow-500 text-white font-bold text-xs shadow border-2 border-yellow-600 hover:bg-yellow-500 transition disabled:opacity-60`}
+                    style={{ width: 90 }}
+                  >
+                    Buy bonus {b * 30}
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
           {/* Desktop: всичко на един ред */}
           <div className="hidden sm:flex flex-row w-full items-end justify-between gap-4">
