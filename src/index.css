@@ -1,11 +1,9 @@
 @import "tailwindcss";
 
-@layer utilities {
-  .bg-ftx {
-    background-color: #00a8c4;
-  }
+.bg-ftx {
+  background-color: #00a8c4;
+}
 
-  .text-ftx {
-    color: #00a8c4;
-  }
+.text-ftx {
+  color: #00a8c4;
 }

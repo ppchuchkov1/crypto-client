@@ -18,6 +18,9 @@ import DepositeCancel from "./components/AddDeposite/DepositeCancel";
 import Deposite from "./pages/Deposite";
 import ExpireTokenModal from "./components/ExpireToken/ExpireTokenModal";
 import Notification from "./UI/Notification";
+import SlotGame from "./components/SlotGame/SlotGame";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const token = useAuthStore((state) => state.token);
@@ -50,6 +53,16 @@ const App = () => {
         <Route path="/crypto" element={<Crypto />} />
         <Route path="/nft" element={<NFT />} />
         <Route path="/sbf" element={<SBF />} />
+        <Route
+          path="/slot"
+          element={
+            <>
+              {/* <Header /> */}
+              <SlotGame />
+              {/* <Footer /> */}
+            </>
+          }
+        />
 
         <Route
           path="/login"
