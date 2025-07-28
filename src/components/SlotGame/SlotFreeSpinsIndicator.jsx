@@ -1,7 +1,6 @@
-import React from "react";
 import useSlotGame from "../../zustang/useSlotGame";
 
-export default function SlotFreeSpinsIndicator() {
+const SlotFreeSpinsIndicator = () => {
   const { freeSpins } = useSlotGame();
   return (
     <div className="w-full flex justify-center mb-2 animate-fade-in">
@@ -15,4 +14,6 @@ export default function SlotFreeSpinsIndicator() {
       </a>
     </div>
   );
-}
+};
+
+export default SlotFreeSpinsIndicator;

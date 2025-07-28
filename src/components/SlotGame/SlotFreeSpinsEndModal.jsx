@@ -1,8 +1,7 @@
-import React from "react";
 import useSlotGame from "../../zustang/useSlotGame";
 import fttImage from "../../assets/slot/ftt-bonus.png";
 
-export default function SlotFreeSpinsEndModal() {
+const SlotFreeSpinsEndModal = () => {
   const { showFreeSpinsModal, setShowFreeSpinsModal, freeSpinsWin } =
     useSlotGame();
 
@@ -38,4 +37,6 @@ export default function SlotFreeSpinsEndModal() {
       </div>
     </div>
   );
-}
+};
+
+export default SlotFreeSpinsEndModal;

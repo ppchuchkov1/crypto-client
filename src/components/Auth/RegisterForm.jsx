@@ -27,6 +27,7 @@ const RegisterForm = () => {
 
     try {
       await register(email, password);
+
       if (token?.length > 0) {
         navigate("/");
       } else {

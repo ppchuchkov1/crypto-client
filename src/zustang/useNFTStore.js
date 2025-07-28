@@ -51,7 +51,6 @@ const useNFTStore = create((set, get) => ({
       if (!res.ok) throw new Error("Failed to buy NFT");
 
       const data = await res.json();
-      console.log("Buy NFT response:", data);
       useNotificationStore
         .getState()
         .showNotification("success", "Purchase successful");
@@ -87,7 +86,6 @@ const useNFTStore = create((set, get) => ({
       if (!res.ok) throw new Error("Failed to list NFT");
 
       const data = await res.json();
-      console.log("List NFT response:", data);
       useNotificationStore
         .getState()
         .showNotification("success", "NFT listed for sale successfully");
@@ -126,7 +124,6 @@ const useNFTStore = create((set, get) => ({
       if (!res.ok) throw new Error("Failed to unlist NFT");
 
       const data = await res.json();
-      console.log("Unlist NFT response:", data);
       useNotificationStore
         .getState()
         .showNotification("success", "NFT unlisted successfully");

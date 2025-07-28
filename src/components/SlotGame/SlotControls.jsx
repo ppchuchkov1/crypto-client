@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Volume2, VolumeOff, Info } from "lucide-react";
+import spinSound from "../../assets/sounds/spin.wav";
 import useWalletStore from "../../zustang/useWalletStore";
 import useSlotGame from "../../zustang/useSlotGame";
-import spinSound from "../../assets/sounds/spin.wav";
 import BetButton from "./BetButton";
 import BuyBonusButton from "./BuyBonusButton";
 

@@ -1,7 +1,8 @@
 import { User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import sbfImage from "../../assets/slot/start.png";
-export default function CasinoAuthPage() {
+
+const NoAuthTokenCasino = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -38,4 +39,6 @@ export default function CasinoAuthPage() {
       </div>
     </div>
   );
-}
+};
+
+export default NoAuthTokenCasino;

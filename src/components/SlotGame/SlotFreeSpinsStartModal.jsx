@@ -1,20 +1,9 @@
-import Modal from "../../UI/Modal";
-import useSlotGame from "../../zustang/useSlotGame";
-import sbfImage from "../../assets/slot/sbf.png";
 import fttImage from "../../assets/slot/ftt-bonus.png";
+import useSlotGame from "../../zustang/useSlotGame";
+import Modal from "../../UI/Modal";
 
 const SlotFreeSpinsStartModal = () => {
-  const {
-    message,
-    showFreeSpinsMessage, // добавяме новия флаг
-    setShowFreeSpinsMessage,
-  } = useSlotGame();
-
-  const freeSpinsCount = (() => {
-    if (!message) return null;
-    const match = message.match(/(\d+)/);
-    return match ? match[1] : null;
-  })();
+  const { showFreeSpinsMessage, setShowFreeSpinsMessage } = useSlotGame();
 
   return (
     <Modal
@@ -29,7 +18,7 @@ const SlotFreeSpinsStartModal = () => {
           alt="SBF"
         />
         <span className="text-2xl sm:text-4xl font-bold text-black text-center tracking-tight leading-tight">
-          {freeSpinsCount ? `${freeSpinsCount} Free Spins` : "+Free Spins"}
+          Free Spins
         </span>
         <span className="text-base sm:text-lg text-neutral-700 text-center max-w-[95vw] sm:max-w-[90%]">
           Congratulations! You just unlocked bonus spins.

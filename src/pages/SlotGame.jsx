@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import prisonBg from "../assets/slot/prison-bg.png";
+import backgroundMusic from "../assets/sounds/background.mp3";
+import useWalletStore from "../zustang/useWalletStore";
+import useAuthStore from "../zustang/useAuthStore";
 import SlotFreeSpinsIndicator from "../components/SlotGame/SlotFreeSpinsIndicator";
 import SlotFreeSpinsEndModal from "../components/SlotGame/SlotFreeSpinsEndModal";
 import SlotReels from "../components/SlotGame/SlotReels";
 import SlotControls from "../components/SlotGame/SlotControls";
-import backgroundMusic from "../assets/sounds/background.mp3";
-import useWalletStore from "../zustang/useWalletStore";
-import useAuthStore from "../zustang/useAuthStore";
 import SlotGameInfoModal from "../components/SlotGame/SlotGameInfoModal";
 import MobileMuteInfoButtons from "../components/SlotGame/MobileMuteInfoButtons";
-import NoAuthToken from "../components/SlotGame/NoAuthToken";
+import NoAuthTokenCasino from "../components/SlotGame/NoAuthTokenCasino";
 
 export default function SlotGame() {
   const audioRef = useRef(null);
@@ -26,6 +26,7 @@ export default function SlotGame() {
     }
   }, [token, getUserWallet]);
 
+  //init music
   useEffect(() => {
     if (!audioRef.current) return;
     audioRef.current.loop = true;
@@ -49,7 +50,7 @@ export default function SlotGame() {
       className="bg-cover bg-center bg-no-repeat w-screen min-h-[93vh] flex flex-col items-center justify-center bg-gradient-to-br from-green-700 to-purple-900 overflow-hidden"
     >
       {wallet.length === 0 ? (
-        <NoAuthToken />
+        <NoAuthTokenCasino />
       ) : (
         <>
           <audio ref={audioRef} src={backgroundMusic} loop hidden />

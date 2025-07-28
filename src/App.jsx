@@ -102,7 +102,9 @@ const App = () => {
           path="/deposite/success"
           element={
             <ProtectedRoute>
+              <Header />
               <DepositeSuccess />
+              <Footer />
             </ProtectedRoute>
           }
         />
@@ -110,7 +112,9 @@ const App = () => {
           path="/deposite/cancel"
           element={
             <ProtectedRoute>
+              <Header />
               <DepositeCancel />
+              <Footer />
             </ProtectedRoute>
           }
         />

@@ -1,10 +1,7 @@
+import { useEffect } from "react";
 import { ShieldX } from "lucide-react";
 import useAuthStore from "../../zustang/useAuthStore";
-
-import ExpireTokenLogin from "./ExpireTokenLogin";
-
 import Modal from "../../UI/Modal";
-import { useEffect } from "react";
 
 const ExpireTokenModal = () => {
   const isExpireToken = useAuthStore((state) => state.isExpireToken);
@@ -15,7 +12,6 @@ const ExpireTokenModal = () => {
     if (isExpireToken) {
       logout();
     }
-    // logout само при първо показване
     // eslint-disable-next-line
   }, [isExpireToken]);
 

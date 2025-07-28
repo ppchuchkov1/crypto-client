@@ -76,7 +76,6 @@ const useCryptoStore = create((set) => ({
       if (!res.ok) throw new Error("Failed to buy crypto");
 
       const data = await res.json();
-      console.log("Buy response:", data);
       useNotificationStore
         .getState()
         .showNotification("success", "Sale successful");
