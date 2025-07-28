@@ -14,14 +14,16 @@ const NoAuthTokenCasino = () => {
       <div className="max-w-lg w-full text-center space-y-8">
         <div className="border bg-black/20 backdrop-blur-sm rounded-2xl p-8 space-y-6">
           <div className="space-y-3">
-            <h2 className="text-2xl font-semibold text-white">
-              Casino Betman-Fried
+            <h2 className="text-3xl font-semibold text-white">
+              You are not logged in
             </h2>
             <p className="text-gray-400">
-              Please login or create an account to access our casino games
+              Please login or create an account to access our casino game
             </p>
           </div>
-          <img className=" block mx-auto" src={sbfImage} alt="" />
+          <div className="bg-white rounded-lg">
+            <img className=" block mx-auto" src={sbfImage} alt="" />
+          </div>
           <div className="space-y-4">
             <button
               onClick={handleLogin}
@@ -31,10 +33,6 @@ const NoAuthTokenCasino = () => {
               <span>Login</span>
             </button>
           </div>
-        </div>
-
-        <div className="text-center text-gray-500 text-sm">
-          <p>Join thousands of players worldwide</p>
         </div>
       </div>
     </div>
