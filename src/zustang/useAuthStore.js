@@ -29,6 +29,7 @@ const useAuthStore = create(
             useNotificationStore
               .getState()
               .showNotification("error", "Wrong email or password");
+            return;
           }
 
           const data = await res.json();

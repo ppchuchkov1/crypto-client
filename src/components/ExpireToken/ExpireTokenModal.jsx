@@ -8,12 +8,12 @@ const ExpireTokenModal = () => {
   const setIsExpireToken = useAuthStore((state) => state.setIsExpireToken);
   const logout = useAuthStore((state) => state.logout);
 
-  useEffect(() => {
-    if (isExpireToken) {
-      logout();
-    }
-    // eslint-disable-next-line
-  }, [isExpireToken]);
+  // useEffect(() => {
+  //   if (isExpireToken) {
+  //     logout();
+  //   }
+  //   // eslint-disable-next-line
+  // }, [isExpireToken]);
 
   if (!isExpireToken) return null;
 

@@ -21,9 +21,9 @@ import Notification from "./UI/Notification";
 import SlotGame from "./pages/SlotGame";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+
 const App = () => {
   const token = useAuthStore((state) => state.token);
-  const login = useAuthStore((state) => state.login);
 
   const wallet = useWalletStore((state) => state.wallet);
   const fetchCrypto = useCryptoStore((state) => state.fetchCrypto);
