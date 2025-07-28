@@ -15,7 +15,7 @@ const symbols = [
   { img: carolineImg, color: "", multiplier: 3 },
 ];
 
-const bets = [100, 500, 1000, 5000];
+const bets = [100, 500, 1000];
 const FREE_SPINS_COUNT = 7;
 
 const useSlotGame = create((set, get) => ({

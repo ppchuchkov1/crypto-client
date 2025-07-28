@@ -11,7 +11,7 @@ import SlotGameInfoModal from "../components/SlotGame/SlotGameInfoModal";
 import MobileMuteInfoButtons from "../components/SlotGame/MobileMuteInfoButtons";
 import NoAuthTokenCasino from "../components/SlotGame/NoAuthTokenCasino";
 
-export default function SlotGame() {
+const SlotGame = () => {
   const audioRef = useRef(null);
   const token = useAuthStore((state) => state.token);
   const getUserWallet = useWalletStore((state) => state.getUserWallet);
@@ -72,4 +72,6 @@ export default function SlotGame() {
       )}
     </div>
   );
-}
+};
+
+export default SlotGame;

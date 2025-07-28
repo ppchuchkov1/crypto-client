@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { memo } from "react";
 
 const WinAnimation = memo(() => {
-  // Намаляваме броя на анимациите от 12 на 8 за по-добра производителност
   const animationCount = 8;
 
   return (
