@@ -96,11 +96,15 @@ const useSlotGame = create((set, get) => ({
     let finalSymbols = [0, 0, 0];
     const wasFreeSpins = state.freeSpins > 0;
 
+    // Оптимизираме интервала за по-добра производителност
+    const spinInterval = 60; // Увеличаваме от 50ms на 60ms
+
     const startReelSpin = (reelIdx, stopAfterMs) => {
       intervals[reelIdx] = setInterval(() => {
         currentReels[reelIdx] = Math.floor(Math.random() * symbols.length);
         set({ reels: [...currentReels] });
-      }, 50);
+      }, spinInterval);
+
       setTimeout(() => {
         clearInterval(intervals[reelIdx]);
         finalSymbols[reelIdx] = Math.floor(Math.random() * symbols.length);
@@ -112,103 +116,112 @@ const useSlotGame = create((set, get) => ({
           next[reelIdx] = false;
           return { reelsSpinning: next };
         });
+
         if (stopped.every(Boolean)) {
-          (async () => {
-            const counts = {};
-            finalSymbols.forEach((idx) => {
-              counts[idx] = (counts[idx] || 0) + 1;
-            });
-            const count7 = counts[0] || 0;
-            let winSymbolIdx = null;
-            let isWin = false;
-            let isTripleSeven = false;
-            if (count7 === 3) {
-              isTripleSeven = true;
-            } else {
-              for (let i = 1; i < symbols.length; i++) {
-                if (
-                  (counts[i] === 2 && count7 === 1) ||
-                  (counts[i] === 1 && count7 === 2)
-                ) {
-                  winSymbolIdx = i;
-                  isWin = true;
-                  break;
-                }
-              }
-              for (let i = 1; i < symbols.length; i++) {
-                if (counts[i] === 3) {
-                  winSymbolIdx = i;
-                  isWin = true;
-                  break;
-                }
-              }
-            }
-            if (isTripleSeven) {
-              set({ inFreeSpinsSession: true });
-              set({
-                message: `${FREE_SPINS_COUNT} FREE SPINS!`,
-                freeSpins: state.freeSpins + FREE_SPINS_COUNT,
-                lastWin: 0,
-                showWinAnimation: false,
-                showFreeSpinsMessage: true,
+          // Използваме requestAnimationFrame за по-добра производителност
+          requestAnimationFrame(() => {
+            (async () => {
+              const counts = {};
+              finalSymbols.forEach((idx) => {
+                counts[idx] = (counts[idx] || 0) + 1;
               });
-              if (!wasFreeSpins) {
+              const count7 = counts[0] || 0;
+              let winSymbolIdx = null;
+              let isWin = false;
+              let isTripleSeven = false;
+
+              if (count7 === 3) {
+                isTripleSeven = true;
+              } else {
+                for (let i = 1; i < symbols.length; i++) {
+                  if (
+                    (counts[i] === 2 && count7 === 1) ||
+                    (counts[i] === 1 && count7 === 2)
+                  ) {
+                    winSymbolIdx = i;
+                    isWin = true;
+                    break;
+                  }
+                }
+                for (let i = 1; i < symbols.length; i++) {
+                  if (counts[i] === 3) {
+                    winSymbolIdx = i;
+                    isWin = true;
+                    break;
+                  }
+                }
+              }
+
+              if (isTripleSeven) {
+                set({ inFreeSpinsSession: true });
                 set({
-                  freeSpinMultiplier: 1,
-                  freeSpinsWin: 0,
-                  freeSpinsBet: usedBet,
+                  message: `${FREE_SPINS_COUNT} FREE SPINS!`,
+                  freeSpins: state.freeSpins + FREE_SPINS_COUNT,
+                  lastWin: 0,
+                  showWinAnimation: false,
+                  showFreeSpinsMessage: true,
                 });
+                if (!wasFreeSpins) {
+                  set({
+                    freeSpinMultiplier: 1,
+                    freeSpinsWin: 0,
+                    freeSpinsBet: usedBet,
+                  });
+                }
+                set({ spinning: false });
+                return;
+              } else if (isWin && winSymbolIdx !== null) {
+                let win = usedBet * symbols[winSymbolIdx].multiplier;
+                let totalMultiplier = 1;
+                if (state.freeSpins > 0) {
+                  totalMultiplier = state.freeSpinMultiplier;
+                  win = win * totalMultiplier;
+                  set({ freeSpinsWin: state.freeSpinsWin + win });
+                }
+
+                // Обновяваме баланса в сървъра при печалба
+                const token = useAuthStore.getState().token;
+                try {
+                  await walletStore.updateSlotBalance(token, 0, win, true);
+                  // Зареждаме най-новия wallet след печалба
+                  await walletStore.getUserWallet(token);
+                } catch (error) {
+                  console.error("Failed to update balance on win:", error);
+                }
+
+                set({
+                  lastWin: win,
+                  showWinAnimation: true,
+                });
+                setTimeout(() => set({ showWinAnimation: false }), 1500); // Намаляваме от 1800ms на 1500ms
+              } else {
+                set({ lastWin: 0, showWinAnimation: false });
+              }
+
+              if (state.freeSpins > 0 && !isTripleSeven) {
+                set({
+                  freeSpins: state.freeSpins > 0 ? state.freeSpins - 1 : 0,
+                  freeSpinMultiplier: state.freeSpinMultiplier + 1,
+                });
+              }
+
+              if (state.freeSpins === 1 && !isTripleSeven) {
+                set({ pendingFreeSpinsEndModal: true });
+                setTimeout(() => {
+                  set({
+                    freeSpinMultiplier: 1,
+                    showFreeSpinsModal: true,
+                    freeSpinsBet: null,
+                  });
+                }, 500);
               }
               set({ spinning: false });
-              return;
-            } else if (isWin && winSymbolIdx !== null) {
-              let win = usedBet * symbols[winSymbolIdx].multiplier;
-              let totalMultiplier = 1;
-              if (state.freeSpins > 0) {
-                totalMultiplier = state.freeSpinMultiplier;
-                win = win * totalMultiplier;
-                set({ freeSpinsWin: state.freeSpinsWin + win });
-              }
-
-              // Обновяваме баланса в сървъра при печалба
-              const token = useAuthStore.getState().token;
-              try {
-                await walletStore.updateSlotBalance(token, 0, win, true);
-                // Зареждаме най-новия wallet след печалба
-                await walletStore.getUserWallet(token);
-              } catch (error) {
-                console.error("Failed to update balance on win:", error);
-              }
-
-              set({
-                lastWin: win,
-                showWinAnimation: true,
-              });
-              setTimeout(() => set({ showWinAnimation: false }), 1800);
-            } else {
-              set({ lastWin: 0, showWinAnimation: false });
-            }
-            if (state.freeSpins > 0 && !isTripleSeven) {
-              set({
-                freeSpins: state.freeSpins > 0 ? state.freeSpins - 1 : 0,
-                freeSpinMultiplier: state.freeSpinMultiplier + 1,
-              });
-            }
-            if (state.freeSpins === 1 && !isTripleSeven) {
-              set({ pendingFreeSpinsEndModal: true });
-              setTimeout(() => {
-                set({
-                  freeSpinMultiplier: 1,
-                  showFreeSpinsModal: true,
-                  freeSpinsBet: null,
-                });
-              }, 500);
-            }
-            set({ spinning: false });
-          })();
+            })();
+          });
         }
       }, stopAfterMs);
     };
+
     startReelSpin(0, 900);
     startReelSpin(1, 1200);
     startReelSpin(2, 1500);
