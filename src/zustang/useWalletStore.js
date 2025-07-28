@@ -48,6 +48,44 @@ const useWalletStore = create((set) => ({
       console.error("Fetch Wallet error:", error);
     }
   },
+
+  updateSlotBalance: async (token, betAmount, winAmount, isWin) => {
+    try {
+      const res = await fetch(`${apiURl}/wallet/slot-update`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ betAmount, winAmount, isWin }),
+      });
+
+      if (res.status === 403) {
+        useAuthStore.setState({ isExpireToken: true });
+        return null;
+      }
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Failed to update balance");
+      }
+
+      const data = await res.json();
+
+      // Обновяваме локалния wallet state
+      set((state) => ({
+        wallet: {
+          ...state.wallet,
+          usdBalance: data.newBalance,
+        },
+      }));
+
+      return data;
+    } catch (error) {
+      console.error("Update slot balance error:", error);
+      throw error;
+    }
+  },
 }));
 
 export default useWalletStore;

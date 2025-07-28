@@ -54,10 +54,14 @@ const Header = () => {
               Wallet
             </Link>
             <Link
-              to="/sbf"
-              className="text-gray-800 font-bold transition-colors duration-200"
+              to="/slot"
+              className="text-gray-800 font-bold transition-colors duration-200 flex group justify-center sm:justify-start gap-1.5"
             >
-              SBF
+              Casino
+              <span className="relative flex w-2 h-2 -mr-2">
+                <span className="absolute inline-flex w-full h-full bg-ftx rounded-full opacity-75 animate-ping" />
+                <span className="relative inline-flex w-2 h-2 bg-ftx rounded-full" />
+              </span>
             </Link>
           </div>
 

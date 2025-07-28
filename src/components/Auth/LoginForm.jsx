@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import useAuthStore from "../../zustang/useAuthStore";
 
@@ -8,8 +8,8 @@ const LoginForm = () => {
   const login = useAuthStore((state) => state.login);
   const token = useAuthStore((state) => state.token);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("ppchuchkov1@gmail.com");
+  const [password, setPassword] = useState("123456");
 
   const handleLogin = async () => {
     try {
@@ -87,9 +87,9 @@ const LoginForm = () => {
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Not a member?{" "}
-          <a href="#" className="font-semibold text-ftx">
+          <Link to="/register" className="font-semibold text-ftx">
             Register
-          </a>
+          </Link>
         </p>
       </div>
     </div>

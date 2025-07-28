@@ -18,12 +18,13 @@ import DepositeCancel from "./components/AddDeposite/DepositeCancel";
 import Deposite from "./pages/Deposite";
 import ExpireTokenModal from "./components/ExpireToken/ExpireTokenModal";
 import Notification from "./UI/Notification";
-import SlotGame from "./components/SlotGame/SlotGame";
+import SlotGame from "./pages/SlotGame";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-
 const App = () => {
   const token = useAuthStore((state) => state.token);
+  const login = useAuthStore((state) => state.login);
+
   const wallet = useWalletStore((state) => state.wallet);
   const fetchCrypto = useCryptoStore((state) => state.fetchCrypto);
   const fetchNfts = useNFTStore((state) => state.fetchNfts);
@@ -57,9 +58,9 @@ const App = () => {
           path="/slot"
           element={
             <>
-              {/* <Header /> */}
+              <Header />
               <SlotGame />
-              {/* <Footer /> */}
+              <Footer />
             </>
           }
         />

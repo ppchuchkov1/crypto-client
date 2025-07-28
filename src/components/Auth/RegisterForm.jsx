@@ -1,19 +1,29 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import useAuthStore from "../../zustang/useAuthStore";
+import useNotificationStore from "../../zustang/useNotificationStore";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
   const register = useAuthStore((state) => state.register);
   const token = useAuthStore((state) => state.token);
+  const showNotification = useNotificationStore(
+    (state) => state.showNotification
+  );
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
 
   const handleRegister = async () => {
     setError(null);
+
+    if (password !== confirmPassword) {
+      showNotification("error", "Passwords do not match");
+      return;
+    }
 
     try {
       await register(email, password);
@@ -68,6 +78,21 @@ const RegisterForm = () => {
           </div>
 
           <div>
+            <label
+              htmlFor="confirmPassword"
+              className="block text-sm font-medium text-gray-900"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-gray-300 placeholder:text-gray-400 focus:outline-2 sm:text-sm"
+            />
+          </div>
+
+          <div>
             <button
               onClick={handleRegister}
               className="flex w-full justify-center rounded-md bg-ftx px-3 py-1.5 text-sm font-semibold text-white shadow-sm cursor-pointer focus-visible:outline-2"
@@ -88,9 +113,9 @@ const RegisterForm = () => {
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?{" "}
-          <a href="/login" className="font-semibold text-ftx">
+          <Link className="font-semibold text-ftx" to="/login">
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>

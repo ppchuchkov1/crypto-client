@@ -42,11 +42,14 @@ const MobileNavigation = ({ setIsMenuOpen }) => {
           Wallet
         </Link>
         <Link
-          to="/sbf"
-          className="text-gray-800 font-bold py-2 px-4 hover:bg-gray-100 rounded-lg"
-          onClick={() => setIsMenuOpen(false)}
+          to="/slot"
+          className="text-gray-800 font-bold py-2 px-4 hover:bg-gray-100 rounded-lg flex group justify-start  gap-1.5"
         >
-          SBF
+          Casino
+          <span className="relative flex w-2 h-2 -mr-2">
+            <span className="absolute inline-flex w-full h-full bg-ftx rounded-full opacity-75 animate-ping" />
+            <span className="relative inline-flex w-2 h-2 bg-ftx rounded-full" />
+          </span>
         </Link>
       </div>
 

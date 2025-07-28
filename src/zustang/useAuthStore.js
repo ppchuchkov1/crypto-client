@@ -81,6 +81,8 @@ const useAuthStore = create(
           email: "",
         });
         set({ isExpireToken: false });
+
+        window.location.reload();
       },
     }),
     {
