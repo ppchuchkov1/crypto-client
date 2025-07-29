@@ -32,10 +32,10 @@ const Hero = () => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <div className="flex flex-row gap-4 justify-center mt-8">
             <Link to="/crypto">
               <button className="cursor-pointer bg-ftx hover:bg-cyan-600 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                Start Trading Now
+                Trade Now
               </button>
             </Link>
             <Link to="/nft">

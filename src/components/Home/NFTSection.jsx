@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import useNFTStore from "../../zustang/useNFTStore";
+import ethImg from "../../assets/nft-section-eth.png";
+import nftFirstMonkeyImg from "../../assets/nft-monkey-1.png";
+import nftSecondMonkeyImg from "../../assets/nft-monkey-2.png";
 import NFTCard from "./NFTCard";
 
 const NFTSection = () => {
@@ -28,8 +31,8 @@ const NFTSection = () => {
                 </div>
                 <div className="relative hidden h-auto md:w-1/2 md:block">
                   <img
-                    src="https://ethereum.org/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fwallet-hero.51c4b723.png&w=1200&q=75"
-                    alt="Header tailwind Section"
+                    src={ethImg}
+                    alt="Etherium"
                     className="h-full ml-auto object-cover"
                   />
                 </div>
@@ -38,11 +41,9 @@ const NFTSection = () => {
             <div className="relative w-full h-auto sm:block hidden">
               <div
                 style={{
-                  backgroundImage:
-                    "url(https://toka.peerduck.com/wp-content/uploads/2022/03/hand_drawn_monkey_ape_vr_box_virtual_nft_style-1.png)",
-                  backgroundSize: "cover",
+                  backgroundImage: `url(${nftFirstMonkeyImg})`,
                 }}
-                className="bg-violet-500 rounded-lg p-5 xl:p-8 h-full"
+                className="bg-ftx bg-cover rounded-lg p-5 xl:p-8 h-full"
               >
                 <h3 className="py-5 text-white text-lg font-bold xl:text-xl">
                   Build wealth with insurance planning
@@ -52,11 +53,9 @@ const NFTSection = () => {
             <div className="relative w-full h-auto sm:block hidden">
               <div
                 style={{
-                  backgroundImage:
-                    "url(https://toka.peerduck.com/wp-content/uploads/2022/05/rkgm.png)",
-                  backgroundSize: "cover",
+                  backgroundImage: `url(${nftSecondMonkeyImg})`,
                 }}
-                className="bg-violet-500 rounded-lg p-5 xl:p-8 h-full"
+                className="bg-ftx bg-cover rounded-lg p-5 xl:p-8 h-full"
               >
                 <h3 className="py-5 text-white text-lg font-bold xl:text-xl">
                   Build wealth with insurance planning

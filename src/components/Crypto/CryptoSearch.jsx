@@ -8,12 +8,12 @@ const CryptoSearch = ({ searchTerm, setSearchTerm }) => {
           <div className="text-center">
             <p className="text-gray-600 mb-4">Ready to explore the markets?</p>
             <p className="text-2xl font-bold text-gray-900">
-              Start with our live cryptocurrency data below
+              Find a powerful crypto assets
             </p>
           </div>
         </div>
       </div>
-      <form className="max-w-md mx-auto py-5">
+      <div className="max-w-md mx-auto p-5">
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <Search className="w-4 h-4" />
@@ -26,7 +26,7 @@ const CryptoSearch = ({ searchTerm, setSearchTerm }) => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-      </form>
+      </div>
     </>
   );
 };

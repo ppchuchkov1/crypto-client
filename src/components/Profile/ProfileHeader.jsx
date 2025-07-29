@@ -1,4 +1,5 @@
 import { CreditCard } from "lucide-react";
+import { Link } from "react-router-dom";
 import profileCover from "../../assets/profile-cover.webp";
 import avatarImage from "../../assets/profile-avatar.jpg";
 import useAuthStore from "../../zustang/useAuthStore";
@@ -32,9 +33,12 @@ const ProfileHeader = () => {
           </div>
           <button className="cursor-pointer py-3.5 px-5 flex rounded-lg bg-black items-center shadow-sm shadow-transparent transition-all duration-500 ">
             <CreditCard color="white" />
-            <span className="px-2 font-semibold text-base leading-7 text-white">
+            <Link
+              to="/crypto"
+              className="px-2 font-semibold text-base leading-7 text-white"
+            >
               Buy crypto
-            </span>
+            </Link>
           </button>
         </div>
       </div>

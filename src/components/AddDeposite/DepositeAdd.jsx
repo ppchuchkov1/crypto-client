@@ -26,7 +26,7 @@ const DepositeAdd = () => {
     >
       <div className="max-w-3xl mx-auto px-4">
         <div className=" gap-8">
-          <p className="text-xl text-gray-100 text-center mb-5 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-100 text-center mb-5 max-w-3xl mx-auto leading-relaxed">
             Trade Bitcoin, Ethereum, and 500+ cryptocurrencies with zero fees.
             Advanced charts, real-time data, and institutional-grade security.
           </p>

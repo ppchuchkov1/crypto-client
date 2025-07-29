@@ -9,7 +9,7 @@ const Modal = ({ isOpen, onClose, children, className }) => {
       ></div>
 
       <div
-        className={`relative rounded-lg mx-4 p-6 z-10 transform transition-all duration-200 scale-100 ${className}`}
+        className={`relative rounded-lg mx-4 z-10 transform transition-all duration-200 scale-100 ${className}`}
         onClick={(e) => e.stopPropagation()} // prevent close when click inside the modal
       >
         {children}

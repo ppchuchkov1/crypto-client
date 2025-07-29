@@ -63,10 +63,12 @@ const CryptoBuyTable = ({ searchTerm }) => {
                     />
 
                     <div>
-                      <div className="font-semibold text-gray-900">
+                      {/* <div className="font-semibold text-gray-900">
                         {crypto.symbol.toUpperCase()}
+                      </div> */}
+                      <div className="text-sm text-gray-600 sm:block hidden">
+                        {crypto.name}
                       </div>
-                      <div className="text-sm text-gray-600">{crypto.name}</div>
                     </div>
                   </div>
 

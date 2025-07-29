@@ -5,7 +5,7 @@ import useAuthStore from "../../zustang/useAuthStore";
 import useNFTStore from "../../zustang/useNFTStore";
 import Modal from "../../UI/Modal";
 
-const ProfileNFTSellModal = ({ selectedNFT, isOpen, onClose }) => {
+const NFTSellModal = ({ selectedNFT, isOpen, onClose }) => {
   const token = useAuthStore((state) => state.token);
   const listNft = useNFTStore((state) => state.listNft);
   const [price, setPrice] = useState("");
@@ -29,7 +29,7 @@ const ProfileNFTSellModal = ({ selectedNFT, isOpen, onClose }) => {
           className="p-6 text-white relative overflow-hidden"
         >
           <div className="relative z-10">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <ArrowDownUp className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Sell {selectedNFT?.name}</h2>
@@ -109,4 +109,4 @@ const ProfileNFTSellModal = ({ selectedNFT, isOpen, onClose }) => {
   );
 };
 
-export default ProfileNFTSellModal;
+export default NFTSellModal;

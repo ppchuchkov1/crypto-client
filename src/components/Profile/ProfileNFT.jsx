@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useWalletStore from "../../zustang/useWalletStore";
 import ProfileNFTCard from "./ProfileNFTCard";
-import ProfileNFTSellModal from "./ProfileNFTSellModal";
+import NFTSellModal from "../NFTModals/NFTSellModal";
 
 const ProfileNFT = () => {
   const wallet = useWalletStore((state) => state.wallet);
@@ -14,7 +14,7 @@ const ProfileNFT = () => {
 
   return (
     <>
-      <ProfileNFTSellModal
+      <NFTSellModal
         isOpen={openSellNFTModal}
         onClose={closeSellNFTModal}
         selectedNFT={selectedNFT}

@@ -43,7 +43,7 @@ const BuyCryptoModal = ({ openBuyCryptoModal, setOpenBuyCryptoModal }) => {
           className="p-5 text-white relative overflow-hidden"
         >
           <div className="relative z-10">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between ">
               <div className="flex items-center gap-3">
                 <ArrowDownUp className="h-6 w-6" />
                 <h2 className="text-xl font-bold">

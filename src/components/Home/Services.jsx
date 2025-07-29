@@ -3,7 +3,7 @@ import etheriumHandImage from "../../assets/eth-hands.png";
 
 const Services = () => {
   return (
-    <section className="bg-white py-10 pb-10 sm:pb-5">
+    <section className="bg-white py-10 pt-10 pb-10 sm:pb-5">
       <div className="grid max-w-7xl mx-auto px-6 lg:gap-8 xl:gap-0  lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="text-4xl font-bold sm:text-6xl mb-4">

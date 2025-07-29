@@ -1,6 +1,7 @@
 import logo from "../../assets/logo.png";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
   return (
     <footer className="bg-black">
       <div className="max-w-screen-xl px-4 pt-16 pb-6 mx-auto sm:px-6 lg:px-8 lg:pt-24">
@@ -134,7 +135,16 @@ const Footer = () => {
         </div>
         <div className="pt-6 mt-12 border-t border-gray-800">
           <div className="text-center sm:flex sm:justify-between sm:text-left">
-            <p className="text-sm text-gray-400">All rights reserved</p>
+            <p className="text-sm text-gray-400">
+              <a
+                target="_blank"
+                className="text-ftx"
+                href="https://github.com/ppchuchkov1/"
+              >
+                ppchuchkov1
+              </a>{" "}
+              © Copyright {year}{" "}
+            </p>
           </div>
         </div>
       </div>

@@ -27,12 +27,12 @@ const CryptoHero = () => {
             </span>
           </div>
 
-          <h1 className="text-6xl lg:text-7xl font-bold mb-6">
-            <span className="block text-white">The Future of</span>
-            <span className="block text-white">Crypto Trading</span>
+          <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+            <span className="block text-white">The future of</span>
+            <span className="block text-white">Crypto trading</span>
           </h1>
 
-          <p className="text-xl text-gray-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-100 mb-12 max-w-2xl mx-auto leading-relaxed">
             Trade Bitcoin, Ethereum, and 500+ cryptocurrencies with zero fees.
             Advanced charts, real-time data, and institutional-grade security.
           </p>
