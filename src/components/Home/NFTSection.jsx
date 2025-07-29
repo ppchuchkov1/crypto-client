@@ -10,26 +10,29 @@ const NFTSection = () => {
 
   return (
     <>
-      <section className="py-4 sm:py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="pb-4 sm:py-12">
+        <div className="mx-auto max-w-7xl px-6 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-lg mx-auto md:max-w-2xl lg:max-w-full">
             <div className="relative w-full h-auto md:col-span-2">
               <div className="bg-gray-800 rounded-lg flex  justify-between flex-row flex-wrap">
                 <div className="p-5  xl:p-8 w-full md:w-1/2 ">
-                  <h3 className="text-lg font-bold xl:text-xl text-white py-5 w-full xl:w-64">
+                  <h3 className="text-lg font-bold xl:text-xl text-white py-5 w-full xl:w-64 text-center xl:text-left">
                     Accomplish tasks swiftly with online tools.
                   </h3>
-                  <p className="text-xs font-normal text-gray-300 w-full mb-8 xl:w-64">
+                  <p className="text-xs font-normal text-gray-300 w-full mb-8 xl:w-64 text-center xl:text-left">
                     Get quoted and covered in under 10 minutes online. no
                     paperwork or waiting any more
                   </p>
+
                   <Link to="/nft">
-                    <button className="cursor-pointer py-2 px-5 border border-solid border-gray-300 rounded-lg gap-2 text-xs text-white font-semibold flex items-center justify-between transition-all duration-500 hover:bg-white/5">
-                      View More
-                    </button>
+                    <div className="flex justify-center sm:justify-start">
+                      <button className="cursor-pointer py-2 px-5 border border-solid border-gray-300 rounded-lg gap-2 text-xs text-white font-semibold flex items-center justify-between transition-all duration-500 hover:bg-white/5">
+                        View More
+                      </button>
+                    </div>
                   </Link>
                 </div>
-                <div className="relative hidden h-auto md:w-1/2 md:block">
+                <div className="relative h-auto md:w-1/2">
                   <img
                     src={ethImg}
                     alt="Etherium"
