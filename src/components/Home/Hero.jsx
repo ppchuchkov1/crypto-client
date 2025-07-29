@@ -27,8 +27,7 @@ const Hero = () => {
           <div className="max-w-2xl mx-auto text-center">
             <p className="mt-5 text-base text-white sm:text-xl">
               Join FTX and access a world of top cryptocurrencies and unique NFT
-              collections. Secure trades, low fees, and a seamless experience —
-              all in one powerful platform.
+              collections. Secure trades and low fees
             </p>
           </div>
 
