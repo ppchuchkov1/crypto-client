@@ -10,7 +10,6 @@ const SellCryptoModal = ({
   setOpenSellCryptoModal,
   selectedCryptoToSell,
 }) => {
-  const selectedCrypto = useCryptoStore((state) => state.selectedCrypto);
   const crypto = useCryptoStore((state) => state.crypto);
   const sellCrypto = useCryptoStore((state) => state.sellCrypto);
   const token = useAuthStore((state) => state.token);
@@ -55,7 +54,7 @@ const SellCryptoModal = ({
               <div className="flex items-center gap-3">
                 <ArrowDownUp className="h-6 w-6" />
                 <h2 className="text-xl font-bold">
-                  Sell {selectedCrypto?.name}
+                  Sell {selectedCryptoToSell?.name}
                 </h2>
               </div>
               <button
