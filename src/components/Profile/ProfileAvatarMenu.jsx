@@ -41,21 +41,13 @@ const ProfileAvatar = () => {
       label: "Settings",
       action: () => console.log("Settings clicked"),
     },
-    {
-      icon: Bell,
-      label: "Notifications",
-      action: () => console.log("Notifications clicked"),
-    },
+
     {
       icon: CreditCard,
       label: "Billing",
       action: () => console.log("Billing clicked"),
     },
-    {
-      icon: Shield,
-      label: "Security",
-      action: () => console.log("Security clicked"),
-    },
+
     { separator: true },
     {
       icon: LogOut,
